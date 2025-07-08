@@ -10,7 +10,7 @@ export default function AddRoom() {
         roomPrice: ''
     })
 
-    cosnt[imagePreview, setImagePreview] = useState('')
+    const [imagePreview, setImagePreview] = useState('')
     const [successMessage, setSuccessMessage] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
 
@@ -60,7 +60,7 @@ export default function AddRoom() {
                             <div className="mb-3">
                                 <label htmlFor="roomType" className="form-label">Room Type</label>
                                 <div>
-                                    <RoomTypeSelector handleNewRoomInputChange={handleInputChange} newRoom={newRoom} />
+                                    <RoomTypeSelector newRoom={newRoom} />
                                 </div>
                             </div>
                             <div className="mb-3">

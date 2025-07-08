@@ -23,7 +23,7 @@ export default function RoomTypeSelector({ handleNewRoomInputChange, newRoom }) 
     }
     return (
         <>
-            {roomTypes.length > 0 && (
+            {roomTypes.length >= 0 && (
                 <div>
                     <select name="roomType" id="roomType" value={newRoom.roomType} onChange={
                         (e) => {

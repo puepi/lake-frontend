@@ -2,7 +2,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "http:localhost:8282"
+    baseURL: "http://localhost:8282"
 })
 
 export async function addRoom(photo, roomType, roomPrice) {
@@ -22,6 +22,7 @@ export async function addRoom(photo, roomType, roomPrice) {
 export async function getRoomTypes() {
     try {
         const response = await api.get("/rooms/room-types")
+        console.log(response.data)
         return response.data
     } catch (error) {
         throw new Error('Error fetching room types')
