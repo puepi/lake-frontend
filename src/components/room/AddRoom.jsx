@@ -5,7 +5,7 @@ import RoomTypeSelector from "../common/RoomTypeSelector"
 
 export default function AddRoom() {
     const [newRoom, setNewRoom] = useState({
-        photo: null,
+        photo: '',
         roomType: '',
         roomPrice: ''
     })
@@ -19,13 +19,14 @@ export default function AddRoom() {
         let value = event.target.value
         if (name === "roomPrice") {
             if (!isNaN(value))
-                value.parseInt(value)
+                Number.parseInt(value)
             else
                 value = ""
         }
         setNewRoom({
             ...newRoom, [name]: value
         })
+        console.log(newRoom)
     }
 
     function handleImageChange(event) {
@@ -60,7 +61,7 @@ export default function AddRoom() {
                             <div className="mb-3">
                                 <label htmlFor="roomType" className="form-label">Room Type</label>
                                 <div>
-                                    <RoomTypeSelector newRoom={newRoom} />
+                                    <RoomTypeSelector newRoom={newRoom} handleNewRoomInputChange={(e)=>handleInputChange(e)} />
                                 </div>
                             </div>
                             <div className="mb-3">
@@ -70,7 +71,7 @@ export default function AddRoom() {
                                     name="roomPrice"
                                     id="roomPrice"
                                     value={newRoom.roomPrice}
-                                    onChange={handleInputChange}
+                                    onChange={(e)=>handleInputChange(e)}
                                 />
                             </div>
                             <div className="mb-3">
@@ -80,7 +81,7 @@ export default function AddRoom() {
                                     name="photo"
                                     id="photo"
                                     value={newRoom.photo}
-                                    onChange={handleImageChange}
+                                    onChange={(e)=>handleImageChange(e)}
                                 />
                                 {imagePreview && (
                                     <img
