@@ -29,16 +29,18 @@ export default function RoomTypeSelector({ handleNewRoomInputChange, newRoom }) 
         <>
             {(roomTypes ? roomTypes.length : '')>= 0 && (
                 <div>
-                    <select name="roomType" id="roomType" value={newRoom.roomType} onChange={
+                    <select name="roomType" id="roomType" required value={newRoom.roomType} onChange={
                         (e) => {
                             if (e.target.value === '-- Add new --') {
                                 setShowInput(true)
+                            }else{
+                                handleNewRoomInputChange(e)
                             }
-                             handleNewRoomInputChange(e)
+                          
 
                         }
                     }>
-                        <option value=" ">Select a new room type</option>
+                        <option value="">Select a new room type</option>
                         <option value="-- Add new --">Add a New Room Type</option>
                         <option disabled>---------------------------</option>
                         {

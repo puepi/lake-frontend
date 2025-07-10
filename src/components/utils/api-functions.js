@@ -13,7 +13,7 @@ export async function addRoom(photo, roomType, roomPrice) {
 
     try {
         const response = await api.post("/rooms/add", formData);
-
+        console.log(response)
         if (response.status >= 200 && response.status < 300) {
             console.log("Room added successfully!"); // Good for confirmation
             return true;
