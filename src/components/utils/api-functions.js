@@ -6,15 +6,26 @@ export const api = axios.create({
 })
 
 export async function addRoom(photo, roomType, roomPrice) {
-    const formData = new FormData()
-    formData.append("photo", photo)
-    formData.append("roomType", roomType)
-    formData.append("roomPrice", roomPrice)
+    const formData = new FormData();
+    formData.append("file", photo);
+    formData.append("roomType", roomType);
+    formData.append("roomPrice", roomPrice);
 
-    const response = await api.post("/rooms/add", formData)
-    if (response.status === 201) {
-        return true
-    } else {
+    try {
+        const response = await api.post("/rooms/add", formData);
+
+        if (response.status >= 200 && response.status < 300) {
+            console.log("Room added successfully!"); // Good for confirmation
+            return true;
+        } else {
+            // If the backend sends an error message in the response body, log it
+            const errorData = response.data ? response.data : 'No additional error info.';
+            console.error(`Failed to add room. Status: ${response.status}, Error:`, errorData);
+            return false;
+        }
+    } catch (error) {
+        console.error("Network or API call error:", error);
+        // You might want to return false or throw a custom error depending on your error handling strategy
         return false;
     }
 }

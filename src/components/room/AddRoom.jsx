@@ -5,14 +5,16 @@ import RoomTypeSelector from "../common/RoomTypeSelector"
 
 export default function AddRoom() {
     const [newRoom, setNewRoom] = useState({
-        photo: '',
+        photo: null,
         roomType: '',
         roomPrice: ''
-    })
+})
 
     const [imagePreview, setImagePreview] = useState('')
     const [successMessage, setSuccessMessage] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
+
+    
 
     function handleInputChange(event) {
         const name = event.target.name
@@ -23,16 +25,16 @@ export default function AddRoom() {
             else
                 value = ""
         }
-        setNewRoom({
-            ...newRoom, [name]: value
-        })
+        setNewRoom({...newRoom,[name]:value})
         console.log(newRoom)
     }
 
     function handleImageChange(event) {
         const selectedImage = event.target.files[0]
-        setNewRoom({ ...newRoom, photo: selectedImage })
-        setImagePreview(URL.createObjectURL(selectedImage))
+        if(selectedImage){
+            setNewRoom({ ...newRoom, photo: selectedImage })
+            setImagePreview(URL.createObjectURL(selectedImage))
+        }
     }
 
     async function handleSubmit(e) {
@@ -77,10 +79,9 @@ export default function AddRoom() {
                             <div className="mb-3">
                                 <label htmlFor="photo" className="form-label">Room Photo</label>
                                 <input
-                                    type="file" className="form-control" required
+                                    type="file" className="form-control" required accept="image/*"
                                     name="photo"
                                     id="photo"
-                                    value={newRoom.photo}
                                     onChange={(e)=>handleImageChange(e)}
                                 />
                                 {imagePreview && (
