@@ -36,8 +36,7 @@ export async function getRoomTypes() {
         console.log(response.data)
         return response.data.data
     } catch (error) {
-        console.log(error)
-        return []
+        throw error
     }
 }
 

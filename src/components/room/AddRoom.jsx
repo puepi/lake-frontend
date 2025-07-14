@@ -57,6 +57,11 @@ export default function AddRoom() {
             setErrorMessage("")
         },3000)
     }
+
+    function handleError(e){
+        setErrorMessage(e)
+        
+    }
     return (
         <>
             <section className="container mt-5 mb-5">
@@ -73,7 +78,7 @@ export default function AddRoom() {
                             <div className="mb-3">
                                 <label htmlFor="roomType" className="form-label">Room Type</label>
                                 <div>
-                                    <RoomTypeSelector newRoom={newRoom} handleNewRoomInputChange={(e)=>handleInputChange(e)} />
+                                    <RoomTypeSelector handleError={(e)=>handleError(e)} newRoom={newRoom} handleNewRoomInputChange={(e)=>handleInputChange(e)} />
                                 </div>
                             </div>
                             <div className="mb-3">

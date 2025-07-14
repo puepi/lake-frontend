@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { getRoomTypes } from "../utils/api-functions"
 
 
-export default function RoomTypeSelector({ handleNewRoomInputChange, newRoom }) {
+export default function RoomTypeSelector({ handleNewRoomInputChange, newRoom,handleError}) {
     const [roomTypes, setRoomTypes] = useState([])
     const [showInput, setShowInput] = useState(false)
     const [newRoomType, setNewRoomType] = useState("")
@@ -11,6 +11,7 @@ export default function RoomTypeSelector({ handleNewRoomInputChange, newRoom }) 
             .then(data => {
                 setRoomTypes(data)
             })
+            .catch(error=>{handleError(error.message)})
     }, [])
 
     function handleAddNewRoomType() {
